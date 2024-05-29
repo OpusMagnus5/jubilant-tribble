@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: admin
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: create
+    open-in-view: false

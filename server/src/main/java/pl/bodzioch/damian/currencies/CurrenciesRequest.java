@@ -1,27 +1,38 @@
 package pl.bodzioch.damian.currencies;
 
-import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CurrentTimestamp;
+import org.hibernate.annotations.SourceType;
 import org.hibernate.generator.EventType;
 import pl.bodzioch.damian.common.GeneratedUuidValue;
-import pl.bodzioch.damian.currencies.valueobject.Currency;
-import pl.bodzioch.damian.currencies.valueobject.ExchangeRate;
-import pl.bodzioch.damian.currencies.valueobject.Name;
-import pl.bodzioch.damian.currencies.valueobject.RequestDate;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "currencies_request")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 class CurrenciesRequest {
 
     @Id
     @GeneratedUuidValue(types = EventType.INSERT)
-    UUID id;
-    Currency currency;
-    Name name;
-    RequestDate date;
-    @AttributeOverride(name = "rate", column = @Column(name = "exchange_rate"))
-    ExchangeRate exchangeRate;
+    private UUID id;
+    private String currency;
+    private String name;
+    @CurrentTimestamp(event = EventType.INSERT, source = SourceType.VM)
+    private LocalDateTime date;
+    @Setter
+    @Column(name = "exchange_rate")
+    private Double exchangeRate;
+
+    CurrenciesRequest(String currency, String name) {
+        this.currency = currency;
+        this.name = name;
+    }
 }
