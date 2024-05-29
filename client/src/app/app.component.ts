@@ -8,8 +8,8 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatListItem, MatNavList} from "@angular/material/list";
 import {AsyncPipe} from "@angular/common";
-import {GET_CURRENCIES_PATH, REQUESTS_PATH} from "./app.routes";
-import {RouterService} from "./shared/router.service";
+import {GET_CURRENCY_RATE_PATH, REQUESTS_PATH} from "./app.routes";
+import {RouterService} from "./shared/service/router.service";
 
 @Component({
   selector: 'app-root',
@@ -32,6 +32,8 @@ import {RouterService} from "./shared/router.service";
 })
 export class AppComponent {
 
+  protected readonly GET_CURRENCY_RATE_PATH = GET_CURRENCY_RATE_PATH;
+
   protected isHandset$: Observable<boolean>;
 
   constructor(
@@ -44,8 +46,6 @@ export class AppComponent {
         shareReplay()
       );
   }
-
-  protected readonly GET_CURRENCIES_PATH = GET_CURRENCIES_PATH;
 
   protected isActivePath(path: string): boolean {
     return this.routerService.isActivePath(path);

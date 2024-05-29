@@ -6,11 +6,11 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item
-         [routerLink]="[GET_CURRENCIES_PATH]"
-         [activated]="isActivePath(GET_CURRENCIES_PATH)">{{ 'Rate download' }}</a>
+         [routerLink]="[GET_CURRENCY_RATE_PATH]"
+         [activated]="isActivePath(GET_CURRENCY_RATE_PATH)">Rate download</a>
       <a mat-list-item
          [routerLink]="[REQUESTS_PATH]"
-         [activated]="isActivePath(REQUESTS_PATH)">{{ 'Request list' }}</a>
+         [activated]="isActivePath(REQUESTS_PATH)">Request list</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

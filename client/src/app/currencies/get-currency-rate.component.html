@@ -1,0 +1,34 @@
+<div class="flex justify-center m-10">
+  <div class="flex flex-col p-5 justify-center w-1/3">
+    <h2>Currency Rate Retrieval</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col p-5">
+      <mat-form-field class="w-full">
+        <mat-label>First name and last name</mat-label>
+        <input matInput
+               type="text"
+               [formControl]="nameControl">
+        @if (nameControl.errors?.['required']) {
+          <mat-error>The name field cannot be empty</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Currency</mat-label>
+        <input matInput
+               type="text"
+               [formControl]="currencyControl"
+               placeholder="e.g. EUR">
+        @if (currencyControl.errors?.['required']) {
+          <mat-error>The currency field cannot be empty</mat-error>
+        } @else if (currencyControl.errors?.['pattern']) {
+          <mat-error>The currency field has an incorrect value</mat-error>
+        }
+      </mat-form-field>
+      <button mat-flat-button
+              color="primary"
+              [disabled]="form.invalid"
+              class="w-1/4 self-end">Send</button>
+    </form>
+    <p [hidden]="currencyRate() === 0" class="mt-5">Exchange rate: {{ currencyRate() }}</p>
+  </div>
+</div>
+
