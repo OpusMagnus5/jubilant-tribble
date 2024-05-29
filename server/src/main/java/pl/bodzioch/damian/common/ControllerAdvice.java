@@ -1,5 +1,6 @@
 package pl.bodzioch.damian.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -14,6 +15,7 @@ import pl.bodzioch.damian.currencies.CurrencyNotFoundException;
 
 import java.util.Optional;
 
+@Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RestControllerAdvice
 class ControllerAdvice {
@@ -23,6 +25,7 @@ class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ MethodArgumentNotValidException.class })
     ErrorResponse handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.error(e.getMessage(), e);
         String error = Optional.ofNullable(e.getBindingResult().getFieldError())
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .orElse(GENERAL_ERROR_MESSAGE);
@@ -32,18 +35,21 @@ class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({ EmptyCurrencyException.class })
     ErrorResponse handleEmptyCurrencyException(EmptyCurrencyException e) {
+        log.error(e.getMessage(), e);
         return new ErrorResponse("The currency field cannot be empty");
     }
 
     @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
     @ExceptionHandler({ NbpClientException.class })
     ErrorResponse handleNbpClientException(NbpClientException e) {
+        log.error(e.getMessage(), e);
         return new ErrorResponse(GENERAL_ERROR_MESSAGE);
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({ CurrencyNotFoundException.class })
     ErrorResponse handleCurrencyNotFoundException(CurrencyNotFoundException e) {
+        log.error(e.getMessage(), e);
         return new ErrorResponse("No currency exchange rate found in external service");
     }
 
