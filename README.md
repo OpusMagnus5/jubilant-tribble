@@ -48,6 +48,13 @@ This project consists of two parts: a RESTful backend developed in Java using th
 * JUnit
 * Mockito
 
+### Setup Instructions
+* Clone the repository.
+* Navigate to the backend directory (server).
+* Build the project using Gradle: mvn clean install.
+* Run the application: java -jar target/server-1.0-SNAPSHOT.jar.
+* The backend server should now be running on http://localhost:8080.
+
 ## Frontend (Angular)
 
 ### Features
@@ -58,3 +65,11 @@ This project consists of two parts: a RESTful backend developed in Java using th
 * Angular
 * Angular Material (for UI components)
 * Tailwind
+
+### Setup Instructions
+* Navigate to the frontend directory (client).
+* Install dependencies: npm install.
+* Run the development server: ng serve.
+* Open a web browser and navigate to http://localhost:4200.
+* You should now see the frontend interface.
+* Ensure that the backend server is running while using the frontend to fetch exchange rates or view query history.
