@@ -51,7 +51,7 @@ This project consists of two parts: a RESTful backend developed in Java using th
 ### Setup Instructions
 * Clone the repository.
 * Navigate to the backend directory (server).
-* Build the project using Gradle: mvn clean install.
+* Build the project using Maven: mvn clean install.
 * Run the application: java -jar target/server-1.0-SNAPSHOT.jar.
 * The backend server should now be running on http://localhost:8080.
 
