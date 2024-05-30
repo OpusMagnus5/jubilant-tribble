@@ -23,12 +23,8 @@ export class ServerErrorHttpInterceptor implements HttpInterceptor {
                   disableClose: true,
                   maxWidth: '50em'
                 });
-              if (statusCode.toString().startsWith('5')) {
+              if (statusCode.toString().startsWith('5') || statusCode.toString().startsWith('4')) {
                 dialogRef.componentInstance.serverError = true;
-              } else if (statusCode.toString().startsWith('4')) {
-                dialogRef.componentInstance.clientError = true;
-              } else {
-                dialogRef.componentInstance.unknownError = true;
               }
             }
             throw error;

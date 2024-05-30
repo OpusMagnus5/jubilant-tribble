@@ -1,0 +1,21 @@
+<div>
+  <table mat-table [dataSource]="dataSource">
+    @for (column of columnsDef; track column) {
+      <ng-container matColumnDef="{{ column.column }}">
+        <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+        @if(column.column === 'date') {
+          <td mat-cell *matCellDef="let element">{{ element[column.column] | date:'dd-MM-yyyy H:mm:ss' }}</td>
+        } @else {
+          <td mat-cell *matCellDef="let element">{{ element[column.column] }}</td>
+        }
+      </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="rowsDef"></tr>
+    <tr mat-row *matRowDef="let row; columns: rowsDef"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [colSpan]="rowsDef.length">No stored requests found in database</td>
+    </tr>
+  </table>
+</div>

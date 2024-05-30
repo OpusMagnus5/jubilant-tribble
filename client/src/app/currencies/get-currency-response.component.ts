@@ -6,27 +6,24 @@ import {
   MatDialogContent,
   MatDialogTitle
 } from "@angular/material/dialog";
-import {MatDivider} from "@angular/material/divider";
 import {MatButton} from "@angular/material/button";
-import {ErrorResponseDto} from "../interceptor/error-response-dto";
 
 @Component({
-  selector: 'app-http-error',
+  selector: 'app-get-currency-response',
   standalone: true,
   imports: [
     MatDialogTitle,
     MatDialogContent,
-    MatDivider,
-    MatButton,
     MatDialogActions,
+    MatButton,
     MatDialogClose
   ],
-  templateUrl: './http-error.component.html'
+  templateUrl: './get-currency-response.component.html'
 })
-export class HttpErrorComponent {
+export class GetCurrencyResponseComponent {
 
-  public serverError: boolean = false;
-
-  constructor(@Inject(MAT_DIALOG_DATA) protected data: ErrorResponseDto) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) protected data: number
+  ) {
   }
 }

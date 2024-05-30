@@ -1,19 +1,14 @@
 <h2 mat-dialog-title>Error occurred</h2>
 
 @if (serverError) {
-  <mat-dialog-content class="details-container">
-    <p>{{ data.error }}</p>
-  </mat-dialog-content>
-} @else if (clientError) {
-  <mat-dialog-content class="details-container">
+  <mat-dialog-content class="text-black/[.87]">
     <p>{{ data.error }}</p>
   </mat-dialog-content>
 } @else {
-  <mat-dialog-content class="details-container">
+  <mat-dialog-content class="text-black/[.87]">
     <p>An unexpected server error has occurred. Please try again later.</p>
   </mat-dialog-content>
 }
-
 
 <mat-dialog-actions align="end">
   <button mat-stroked-button

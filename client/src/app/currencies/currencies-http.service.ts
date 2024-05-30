@@ -1,6 +1,10 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {GetCurrentCurrencyValueRequest, GetCurrentCurrencyValueResponse} from "./currencies-dtos";
+import {
+  GetCurrenciesRequestsResponse,
+  GetCurrentCurrencyValueRequest,
+  GetCurrentCurrencyValueResponse
+} from "./currencies-dtos";
 import {SERVER_URL} from "../shared/server-config";
 import {Observable} from "rxjs";
 
@@ -18,6 +22,12 @@ export class CurrenciesHttpService {
     return this.http.post<GetCurrentCurrencyValueResponse>(
       SERVER_URL + this.CURRENCIES_PATH + '/get-current-currency-value-command',
       request
+    );
+  }
+
+  getCurrenciesRequests(): Observable<GetCurrenciesRequestsResponse> {
+    return this.http.get<GetCurrenciesRequestsResponse>(
+      SERVER_URL + this.CURRENCIES_PATH + '/requests'
     )
   }
 }
